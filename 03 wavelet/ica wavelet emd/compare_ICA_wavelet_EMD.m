@@ -11,7 +11,7 @@ EOG = EEG.data(3, :);
 EEG = pop_select(EEG, 'nochannel', {'TRIG1' 'TRIG2' 'EOG' 'GATE' 'P2' 'P3'});
 %% Remove bad electrodes
 EEG = pop_rejchan(EEG, 'elec', 1:size(EEG.data,1) , ...
-    'threshold',5, ...
+    'threshold', 7.5, ...
     'norm','on',['' ...
     'measure'],'kurt');
 
@@ -45,8 +45,6 @@ EEG_EMD = EMD_OA_rm(EEG);
 
 %% Plotting PSD results
 chan_name = EEG.chanlocs(1).labels; % Get the name of the first channel
-
-% PSD plotting
 figure;
 tiledlayout(4, 1);
 % EEG
@@ -70,20 +68,35 @@ pwelch(EEG_EMD.data(1, :), [], [], [], EEG_EMD.srate);
 xlim([0 50]), ylim([-60 60]);
 title("EEG channel " + chan_name + " - after EMD artifact removal");
 
+%% Plotting PSD results
+chan_name = EEG.chanlocs(1).labels; % Get the name of the first channel
+figure;
+% EEG
+pwelch(EEG.data(1, :), [], [], [], EEG.srate);
+hold on;
+% EEG_wavelet
+pwelch(EEG_wavelet.data(1, :), [], [], [], EEG_wavelet.srate);
+hold on;
+% EEG_ICA
+pwelch(EEG_ICA.data(1, :), [], [], [], EEG_ICA.srate);
+hold on;
+% EEG_EMD
+pwelch(EEG_EMD.data(1, :), [], [], [], EEG_EMD.srate);
+xlim([0 50]), ylim([-60 60]);
+legend(["Raw EEG", "Wavelet", "ICA", "EMD"]);
+title("EEG channel " + chan_name);
+
 %% Root Mean Square Error (RMSE) between the three methods
-% Compute RMSE between methods
-%E_wave_ica = rmse(EEG_wavelet.data(1, :), EEG_ICA.data(1, :));
 E_wave_norm = rmse(EEG_wavelet.data(1, :), EEG.data(1, :));
 E_ica_norm = rmse(EEG_ICA.data(1, :), EEG.data(1, :));
 E_emd_norm = rmse(EEG_EMD.data(1, :), EEG.data(1, :));
 
 % Display RMSE values
-%disp(['RMSE between wavelet and ICA: ', num2str(E_wave_ica)]);
 disp(['RMSE between wavelet and original: ', num2str(E_wave_norm)]);
 disp(['RMSE between ICA and original: ', num2str(E_ica_norm)]);
 disp(['RMSE between EMD and original: ', num2str(E_emd_norm)]);
 
-% Plot RMSE results as a bar chart
+% RMSE bar chart
 figure;
 bar([E_wave_norm, E_ica_norm, E_emd_norm], 'FaceColor', [0.2 0.6 0.8]);
 set(gca, 'XTickLabel', {'Wavelet', 'ICA', 'EMD'});
