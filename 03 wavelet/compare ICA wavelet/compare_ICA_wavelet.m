@@ -1,0 +1,98 @@
+%% step 0
+clear; close all; clc;
+
+% alberto8_tdcs_epoched: raw data epoched around TMS pulse
+filepath = '..';
+filename = 'alberto8_tdcs_epoched.set';
+
+%% Import data to EEGLAB
+EEG = pop_loadset('filename', filename, 'filepath', filepath);
+EOG = EEG.data(3, :);
+
+% remove unused channels
+EEG = pop_select(EEG, 'nochannel', {'TRIG1' 'TRIG2' 'EOG' 'GATE' 'P2' 'P3'});
+
+%% Remove bad electrodes
+EEG = pop_rejchan(EEG, 'elec', 1:size(EEG.data,1) , ...
+    'threshold',5, ...
+    'norm','on',['' ...
+    'measure'],'kurt');
+
+%% Add EOG events to dataset
+CHANNEL = EEG.data(1, :);
+time = 0:1/EEG.srate:length(CHANNEL)/EEG.srate - 1/EEG.srate;
+
+% FIND PEAKS
+threshold = mean(EOG) + 1.2 * std(EOG);
+[pks, locs] = findpeaks(EOG, 'MinPeakHeight', threshold, ...
+                             'MinPeakDistance', EEG.srate);
+% Plot found peaks
+figure;
+plot(time, EOG), hold on;
+plot(locs/EEG.srate, pks, 'ro', 'MarkerFaceColor', 'r');
+yline(threshold, '--r', 'Threshold');
+title("EOG - ocular artifacts"), xlabel("Time [s]"), ylabel("Amplitude [uV]");
+
+% Add EOG events to EEG.event without removing existing events (e.g., TMS)
+numExistingEvents = length(EEG.event);
+for i = 1:length(locs)
+    EEG.event(numExistingEvents + i).latency = locs(i);
+    EEG.event(numExistingEvents + i).type = 'EOG';
+end
+EEG = eeg_checkset(EEG, 'eventconsistency');
+
+
+%% Remove ocular artifacts
+EEG_wavelet = wavelet_OA_rm(EEG);
+EEG_ICA = ICA_OA_rm(EEG);
+
+%% Plotting results
+chan_name = EEG.chanlocs(1).labels; % Get the name of the first channel
+
+% PSD plotting
+figure;
+tiledlayout(3, 1);
+% EEG
+nexttile;
+pwelch(EEG.data(1, :), [], [], [], EEG.srate);
+xlim([0 50]), ylim([-60 60]);
+title("EEG channel " + chan_name + " - before artifact removal");
+% EEG_wavelet
+nexttile;
+pwelch(EEG_wavelet.data(1, :), [], [], [], EEG_wavelet.srate);
+xlim([0 50]), ylim([-60 60]);
+title("EEG channel " + chan_name + " - after wavelet artifact removal");
+% EEG_ICA
+nexttile;
+pwelch(EEG_ICA.data(1, :), [], [], [], EEG_ICA.srate);
+xlim([0 50]), ylim([-60 60]);
+title("EEG channel " + chan_name + " - after ICA artifact removal");
+
+% Root Mean Square Error (RMSE) between the three methods
+% Compute RMSE between methods
+E_wave_ica = rmse(EEG_wavelet.data(1, :), EEG_ICA.data(1, :));
+E_wave_norm = rmse(EEG_wavelet.data(1, :), EEG.data(1, :));
+E_ica_norm = rmse(EEG_ICA.data(1, :), EEG.data(1, :));
+
+% Display RMSE values
+disp(['RMSE between wavelet and ICA: ', num2str(E_wave_ica)]);
+disp(['RMSE between wavelet and original: ', num2str(E_wave_norm)]);
+disp(['RMSE between ICA and original: ', num2str(E_ica_norm)]);
+
+% Plot RMSE results as a bar chart
+figure;
+bar([E_wave_ica, E_wave_norm, E_ica_norm]);
+set(gca, 'XTickLabel', {'Wavelet vs ICA', 'Wavelet vs Original', 'ICA vs Original'});
+ylabel('RMSE');
+title('RMSE between artifact removal methods');
+
+% 1-48 Hz bandpass filter
+EEG = pop_tesa_filtbutter( EEG, 1, 48, 4, 'bandpass' );
+EEG_wavelet = pop_tesa_filtbutter( EEG_wavelet, 1, 48, 4, 'bandpass' ); 
+EEG_ICA = pop_tesa_filtbutter( EEG_ICA, 1, 48, 4, 'bandpass' ); 
+
+
+% EEGplot
+pop_eegplot(EEG, 1, 1, 1, 1);
+pop_eegplot(EEG_wavelet, 1, 1, 1, 1);
+pop_eegplot(EEG_ICA, 1, 1, 1, 1);

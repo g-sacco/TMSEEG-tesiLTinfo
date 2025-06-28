@@ -1,0 +1,69 @@
+%% step 0
+clear; close all; clc;
+warning('off', 'MATLAB:nearlySingularMatrix'); % Or general warning suppression
+
+
+% alberto8_tdcs_epoched: raw data epoched around TMS pulse
+filepath = '..';
+filename = 'alberto8_tdcs_epoched.set';
+
+%% Import data to EEGLAB
+EEG = pop_loadset('filename', filename, 'filepath', filepath);
+EOG = EEG.data(3, :);
+
+% remove unused channels
+EEG = pop_select(EEG, 'nochannel', {'TRIG1' 'TRIG2' 'EOG' 'GATE' 'P2' 'P3'});
+
+%% Remove bad electrodes
+EEG = pop_rejchan(EEG, 'elec', 1:size(EEG.data,1) , ...
+    'threshold',5, ...
+    'norm','on',['' ...
+    'measure'],'kurt');
+
+%% Add EOG events to dataset
+CHANNEL = EEG.data(1, :);
+time = 0:1/EEG.srate:length(CHANNEL)/EEG.srate - 1/EEG.srate;
+
+% FIND PEAKS
+threshold = mean(EOG) + 1.2 * std(EOG);
+[pks, locs] = findpeaks(EOG, 'MinPeakHeight', threshold, ...
+                             'MinPeakDistance', EEG.srate);
+% Plot found peaks
+figure;
+plot(time, EOG), hold on;
+plot(locs/EEG.srate, pks, 'ro', 'MarkerFaceColor', 'r');
+yline(threshold, '--r', 'Threshold');
+title("EOG - ocular artifacts"), xlabel("Time [s]"), ylabel("Amplitude [uV]");
+
+% Add EOG events to EEG.event without removing existing events (e.g., TMS)
+numExistingEvents = length(EEG.event);
+for i = 1:length(locs)
+    EEG.event(numExistingEvents + i).latency = locs(i);
+    EEG.event(numExistingEvents + i).type = 'EOG';
+end
+EEG = eeg_checkset(EEG, 'eventconsistency');
+
+%% Remove ocular artifacts
+pop_eegplot(EEG, 1, 1, 1, 1);
+%for chanIdx = 1:EEG.nbchan
+for chanIdx = 1:1
+    [imf, residual, info] = emd(EEG.data(chanIdx, :), "MaxNumIMF", 5, ...
+                                                      "Interpolation", 'pchip', ...
+                                                      "SiftRelativeTolerance", 0.2);
+    for i = 1:size(imf, 2)
+        c_imf = imf(:, i);
+        % Apply wavelet thresholding to the current IMF
+        threshold_high = mean(c_imf) + 3*std(c_imf);
+        %figure;
+        %plot(c_imf, 'b'), hold on;
+        r_imf = wthresh(c_imf, 's', threshold_high); 
+        %plot(r_imf, 'r');
+        filt_imf = c_imf - r_imf; % Subtract the thresholded IMF from the original IMF
+        %figure, plot(filt_imf, 'g');
+        imf(:, i) = filt_imf; % Replace the IMF with the filtered version
+    end
+    figure, plot(EEG.data(chanIdx, :)), hold on;
+    EEG.data(chanIdx, :) = sum(imf, 2) + residual; % Reconstruct the signal from the filtered IMFs and residual
+    plot(EEG.data(chanIdx, :), 'r');
+end
+pop_eegplot(EEG, 1, 1, 1, 1);
