@@ -236,6 +236,64 @@ The following figures show the results of the comparison between the three artif
 \label{fig:zoom_39eegplot}
 \end{figure}
 
+\subsubsection{Removed signal comparison}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/psd_signal_removed.png}
+    \caption{PSD of the removed components for each method.}
+    \label{fig:psd_signal_removed}
+\end{figure}
+
+\begin{figure}[htbp]
+    \begin{subfigure}{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.99\linewidth, height=9cm]{images/signal_removed/ica_39_(13scale).png}
+        \caption{fastICA.}
+        \label{fig:39_signal_removed_ica}
+    \end{subfigure}
+    \begin{subfigure}{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.99\linewidth, height=9cm]{images/signal_removed/wavelet_39_(13scale).png}
+        \caption{Wavelet.}
+        \label{fig:39_signal_removed_wavelet}
+    \end{subfigure}
+    \begin{subfigure}{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.99\linewidth, height=9cm]{images/signal_removed/emd_39_(13scale).png}
+        \caption{EMD.}
+        \label{fig:39_signal_removed_emd}
+    \end{subfigure}
+
+\caption{Comparison of the signal removed by the three methods (epoch 39-40): (a) after fastICA, (b) after wavelet decomposition, (c) after EMD.}
+\label{fig:39_signal_removed}
+\end{figure}
+
+\begin{figure}[htbp]
+    \begin{subfigure}{1\textwidth}
+        \centering
+        \includegraphics[width=0.99\linewidth, height=6cm]{images/signal_removed/5ch_ica_39.png}
+        \caption{fastICA.}
+        \label{fig:5ch_39_signal_removed_ica}
+    \end{subfigure}
+    \begin{subfigure}{1\textwidth}
+        \centering
+        \includegraphics[width=0.99\linewidth, height=6cm]{images/signal_removed/5ch_wavelet_39.png}
+        \caption{Wavelet.}
+        \label{fig:5ch_39_signal_removed_wavelet}
+    \end{subfigure}
+    \begin{subfigure}{1\textwidth}
+        \centering
+        \includegraphics[width=0.99\linewidth, height=6cm]{images/signal_removed/5ch_emd_39.png}
+        \caption{EMD.}
+        \label{fig:5ch_39_signal_removed_emd}
+    \end{subfigure}
+
+\caption{5 channels comparison of the signal removed by the three methods: (a) after fastICA, (b) after wavelet decomposition, (c) after EMD.}
+\label{fig:5ch_39_signal_removed}
+\end{figure}
+
+
+
 \end{document}
 
 \bibliographystyle{alpha}

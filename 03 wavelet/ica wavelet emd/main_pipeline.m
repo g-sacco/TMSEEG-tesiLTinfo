@@ -6,7 +6,7 @@
 
 function main()
     %% Initialize
-    close all; clc;
+    clear; close all; clc;
     
     fprintf('=== EEG Artifact Removal Comparison Pipeline ===\n\n');
     

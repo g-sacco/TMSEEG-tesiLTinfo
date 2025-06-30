@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.3)  28 JUN 2025 10:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.6.3)  30 JUN 2025 12:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Utente/OneDrive - Università degli Studi di Milano-Bicocca/unimib/Stage/codice/03 wavelet/relazione/TMS-EEG wavelet.tex"
-(c:/Users/Utente/OneDrive - Università degli Studi di Milano-Bicocca/unimib/Stage/codice/03 wavelet/relazione/TMS-EEG wavelet.tex
+**"c:/Users/Utente/OneDrive - Università degli Studi di Milano-Bicocca/unimib/Stage/TMSEEG-tesiLTinfo/03 wavelet/relazione/TMS-EEG wavelet.tex"
+(c:/Users/Utente/OneDrive - Università degli Studi di Milano-Bicocca/unimib/Stage/TMSEEG-tesiLTinfo/03 wavelet/relazione/TMS-EEG wavelet.tex
 LaTeX2e <2025-06-01>
 L3 programming layer <2025-05-26>
 (d:/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -433,7 +433,7 @@ Package hyperref Info: Link coloring ON on input line 23.
 \c@lstlisting=\count336
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-<images/db4.jpg, id=61, 144.54pt x 115.632pt>
+<images/db4.jpg, id=65, 144.54pt x 115.632pt>
 File: images/db4.jpg Graphic file (type jpg)
 <use images/db4.jpg>
 Package pdftex.def Info: images/db4.jpg  used on input line 71.
@@ -448,27 +448,27 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 
 
 [2 <./images/db4.jpg>]
-<images/psd_comparison.png, id=108, 421.575pt x 316.18124pt>
+<images/psd_comparison.png, id=112, 421.575pt x 316.18124pt>
 File: images/psd_comparison.png Graphic file (type png)
 <use images/psd_comparison.png>
 Package pdftex.def Info: images/psd_comparison.png  used on input line 98.
 (pdftex.def)             Requested size: 443.57848pt x 332.69pt.
-<images/zoom_37eegplot_48hzBP.png, id=112, 286.82156pt x 568.37344pt>
+<images/zoom_37eegplot_48hzBP.png, id=116, 286.82156pt x 568.37344pt>
 File: images/zoom_37eegplot_48hzBP.png Graphic file (type png)
 <use images/zoom_37eegplot_48hzBP.png>
 Package pdftex.def Info: images/zoom_37eegplot_48hzBP.png  used on input line 123.
 (pdftex.def)             Requested size: 131.74257pt x 284.5416pt.
-<images/zoom_37eegplot_ica_48hzBP.png, id=114, 283.81032pt x 565.36218pt>
+<images/zoom_37eegplot_ica_48hzBP.png, id=118, 283.81032pt x 565.36218pt>
 File: images/zoom_37eegplot_ica_48hzBP.png Graphic file (type png)
 <use images/zoom_37eegplot_ica_48hzBP.png>
 Package pdftex.def Info: images/zoom_37eegplot_ica_48hzBP.png  used on input line 129.
 (pdftex.def)             Requested size: 131.74524pt x 284.53514pt.
-<images/zoom_37eegplot_wavelet_48hzBP.png, id=115, 284.56313pt x 571.38469pt>
+<images/zoom_37eegplot_wavelet_48hzBP.png, id=119, 284.56313pt x 571.38469pt>
 File: images/zoom_37eegplot_wavelet_48hzBP.png Graphic file (type png)
 <use images/zoom_37eegplot_wavelet_48hzBP.png>
 Package pdftex.def Info: images/zoom_37eegplot_wavelet_48hzBP.png  used on input line 135.
 (pdftex.def)             Requested size: 131.74733pt x 284.52335pt.
-<images/wavedec.png, id=116, 595.47469pt x 399.74344pt>
+<images/wavedec.png, id=120, 595.47469pt x 399.74344pt>
 File: images/wavedec.png Graphic file (type png)
 <use images/wavedec.png>
 Package pdftex.def Info: images/wavedec.png  used on input line 150.
@@ -478,12 +478,12 @@ Package pdftex.def Info: images/wavedec.png  used on input line 150.
 [3 <./images/psd_comparison.png (PNG copy)>]
 
 [4 <./images/zoom_37eegplot_48hzBP.png> <./images/zoom_37eegplot_ica_48hzBP.png> <./images/zoom_37eegplot_wavelet_48hzBP.png> <./images/wavedec.png>]
-<images/psd_emd.png, id=136, 456.95718pt x 422.32782pt>
+<images/psd_emd.png, id=140, 456.95718pt x 422.32782pt>
 File: images/psd_emd.png Graphic file (type png)
 <use images/psd_emd.png>
 Package pdftex.def Info: images/psd_emd.png  used on input line 196.
 (pdftex.def)             Requested size: 332.68385pt x 307.47833pt.
-<images/psdrmse_icaemdwave.png, id=137, 421.575pt x 316.18124pt>
+<images/psdrmse_icaemdwave.png, id=141, 421.575pt x 316.18124pt>
 File: images/psdrmse_icaemdwave.png Graphic file (type png)
 <use images/psdrmse_icaemdwave.png>
 Package pdftex.def Info: images/psdrmse_icaemdwave.png  used on input line 203.
@@ -491,49 +491,89 @@ Package pdftex.def Info: images/psdrmse_icaemdwave.png  used on input line 203.
 
 
 [5 <./images/psd_emd.png (PNG copy)>]
-<images/2_visual_comparison/raw_data.png, id=144, 166.37157pt x 566.115pt>
+<images/2_visual_comparison/raw_data.png, id=149, 166.37157pt x 566.115pt>
 File: images/2_visual_comparison/raw_data.png Graphic file (type png)
 <use images/2_visual_comparison/raw_data.png>
 Package pdftex.def Info: images/2_visual_comparison/raw_data.png  used on input line 213.
 (pdftex.def)             Requested size: 95.8152pt x 284.53394pt.
-<images/2_visual_comparison/ica.png, id=145, 161.85469pt x 573.64313pt>
+<images/2_visual_comparison/ica.png, id=150, 161.85469pt x 573.64313pt>
 File: images/2_visual_comparison/ica.png Graphic file (type png)
 <use images/2_visual_comparison/ica.png>
 Package pdftex.def Info: images/2_visual_comparison/ica.png  used on input line 219.
 (pdftex.def)             Requested size: 95.81448pt x 284.52754pt.
-<images/2_visual_comparison/wavelet.png, id=146, 164.11313pt x 571.38469pt>
+<images/2_visual_comparison/wavelet.png, id=151, 164.11313pt x 571.38469pt>
 File: images/2_visual_comparison/wavelet.png Graphic file (type png)
 <use images/2_visual_comparison/wavelet.png>
 Package pdftex.def Info: images/2_visual_comparison/wavelet.png  used on input line 225.
 (pdftex.def)             Requested size: 95.81421pt x 284.52335pt.
-<images/2_visual_comparison/emd.png, id=147, 168.63pt x 578.91281pt>
+<images/2_visual_comparison/emd.png, id=152, 168.63pt x 578.91281pt>
 File: images/2_visual_comparison/emd.png Graphic file (type png)
 <use images/2_visual_comparison/emd.png>
 Package pdftex.def Info: images/2_visual_comparison/emd.png  used on input line 231.
 (pdftex.def)             Requested size: 95.81647pt x 284.5266pt.
 
 
-[6 <./images/psdrmse_icaemdwave.png (PNG copy)> <./images/2_visual_comparison/raw_data.png> <./images/2_visual_comparison/ica.png> <./images/2_visual_comparison/wavelet.png> <./images/2_visual_comparison/emd.png>] (./TMS-EEG wavelet.aux)
+[6 <./images/psdrmse_icaemdwave.png (PNG copy)> <./images/2_visual_comparison/raw_data.png> <./images/2_visual_comparison/ica.png> <./images/2_visual_comparison/wavelet.png> <./images/2_visual_comparison/emd.png>]
+<images/psd_signal_removed.png, id=163, 421.575pt x 316.3017pt>
+File: images/psd_signal_removed.png Graphic file (type png)
+<use images/psd_signal_removed.png>
+Package pdftex.def Info: images/psd_signal_removed.png  used on input line 242.
+(pdftex.def)             Requested size: 354.86412pt x 266.25629pt.
+<images/signal_removed/ica_39_(13scale).png, id=164, 264.23718pt x 566.86781pt>
+File: images/signal_removed/ica_39_(13scale).png Graphic file (type png)
+<use images/signal_removed/ica_39_(13scale).png>
+Package pdftex.def Info: images/signal_removed/ica_39_(13scale).png  used on input line 250.
+(pdftex.def)             Requested size: 144.91963pt x 256.08287pt.
+<images/signal_removed/wavelet_39_(13scale).png, id=165, 271.0125pt x 568.37344pt>
+File: images/signal_removed/wavelet_39_(13scale).png Graphic file (type png)
+<use images/signal_removed/wavelet_39_(13scale).png>
+Package pdftex.def Info: images/signal_removed/wavelet_39_(13scale).png  used on input line 256.
+(pdftex.def)             Requested size: 144.92201pt x 256.08658pt.
+<images/signal_removed/emd_39_(13scale).png, id=166, 264.23718pt x 573.64313pt>
+File: images/signal_removed/emd_39_(13scale).png Graphic file (type png)
+<use images/signal_removed/emd_39_(13scale).png>
+Package pdftex.def Info: images/signal_removed/emd_39_(13scale).png  used on input line 262.
+(pdftex.def)             Requested size: 144.91963pt x 256.08005pt.
+<images/signal_removed/5ch_ica_39.png, id=167, 1311.39937pt x 567.62062pt>
+File: images/signal_removed/5ch_ica_39.png Graphic file (type png)
+<use images/signal_removed/5ch_ica_39.png>
+Package pdftex.def Info: images/signal_removed/5ch_ica_39.png  used on input line 274.
+(pdftex.def)             Requested size: 439.14642pt x 170.71188pt.
+<images/signal_removed/5ch_wavelet_39.png, id=168, 1323.44438pt x 572.89032pt>
+File: images/signal_removed/5ch_wavelet_39.png Graphic file (type png)
+<use images/signal_removed/5ch_wavelet_39.png>
+Package pdftex.def Info: images/signal_removed/5ch_wavelet_39.png  used on input line 280.
+(pdftex.def)             Requested size: 439.1411pt x 170.71452pt.
+<images/signal_removed/5ch_emd_39.png, id=169, 1325.70282pt x 575.14874pt>
+File: images/signal_removed/5ch_emd_39.png Graphic file (type png)
+<use images/signal_removed/5ch_emd_39.png>
+Package pdftex.def Info: images/signal_removed/5ch_emd_39.png  used on input line 286.
+(pdftex.def)             Requested size: 439.14203pt x 170.71176pt.
+
+
+[7 <./images/psd_signal_removed.png (PNG copy)> <./images/signal_removed/ica_39_(13scale).png> <./images/signal_removed/wavelet_39_(13scale).png> <./images/signal_removed/emd_39_(13scale).png>]
+
+[8 <./images/signal_removed/5ch_ica_39.png> <./images/signal_removed/5ch_wavelet_39.png> <./images/signal_removed/5ch_emd_39.png>] (./TMS-EEG wavelet.aux)
  ***********
 LaTeX2e <2025-06-01>
 L3 programming layer <2025-05-26>
  ***********
 Package rerunfilecheck Info: File `"TMS-EEG wavelet".out' has not changed.
-(rerunfilecheck)             Checksum: D32F79C3CE03036561139624EB33F3AE;2399.
+(rerunfilecheck)             Checksum: 8AE5390462DEDE3F9E50E225E02A16C9;2598.
  ) 
 Here is how much of TeX's memory you used:
- 14781 strings out of 467892
- 234763 string characters out of 5438323
- 767730 words of memory out of 5000000
- 43113 multiletter control sequences out of 15000+600000
+ 14852 strings out of 467892
+ 237593 string characters out of 5438323
+ 768582 words of memory out of 5000000
+ 43178 multiletter control sequences out of 15000+600000
  633307 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,17n,79p,549b,1347s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,17n,79p,560b,1347s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on "TMS-EEG wavelet.pdf" (6 pages, 925364 bytes).
+Output written on "TMS-EEG wavelet.pdf" (8 pages, 1799397 bytes).
 PDF statistics:
- 213 PDF objects out of 1000 (max. 8388607)
- 165 compressed objects within 2 object streams
- 60 named destinations out of 1000 (max. 500000)
- 173 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 244 PDF objects out of 1000 (max. 8388607)
+ 181 compressed objects within 2 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 216 words of extra memory for PDF output out of 10000 (max. 10000000)
 
