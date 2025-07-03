@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1751280458.71143 "c:/Users/Utente/OneDrive - Università degli Studi di Milano-Bicocca/unimib/Stage/TMSEEG-tesiLTinfo/03 wavelet/relazione/TMS-EEG wavelet.tex" "TMS-EEG wavelet.pdf" "TMS-EEG wavelet" 1751280465.11775 0
-  "TMS-EEG wavelet.aux" 1751280464 8236 1bc5048200d44b3bd4632d7730e487e0 "pdflatex"
-  "TMS-EEG wavelet.out" 1751280464 2598 8ae5390462dede3f9e50e225e02a16c9 "pdflatex"
-  "TMS-EEG wavelet.tex" 1751280451 12703 f59ba126ba0342c526b3f73c3986e7e4 ""
-  "c:/Users/Utente/OneDrive - Università degli Studi di Milano-Bicocca/unimib/Stage/TMSEEG-tesiLTinfo/03 wavelet/relazione/TMS-EEG wavelet.tex" 1751280451 12703 f59ba126ba0342c526b3f73c3986e7e4 ""
+["pdflatex"] 1751291360.6077 "c:/Users/Utente/OneDrive - Università degli Studi di Milano-Bicocca/unimib/Stage/TMSEEG-tesiLTinfo/03 wavelet/relazione/TMS-EEG wavelet.tex" "TMS-EEG wavelet.pdf" "TMS-EEG wavelet" 1751291367.03777 0
+  "TMS-EEG wavelet.aux" 1751291366 8726 1865eb9cb119e8b7f857487e0ca89aee "pdflatex"
+  "TMS-EEG wavelet.out" 1751291366 2598 8ae5390462dede3f9e50e225e02a16c9 "pdflatex"
+  "TMS-EEG wavelet.tex" 1751291352 13032 a57f40e79893207e22232bab9bbc0787 ""
+  "c:/Users/Utente/OneDrive - Università degli Studi di Milano-Bicocca/unimib/Stage/TMSEEG-tesiLTinfo/03 wavelet/relazione/TMS-EEG wavelet.tex" 1751291352 13032 a57f40e79893207e22232bab9bbc0787 ""
   "d:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1748973193 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "d:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1748978929 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1748973889 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -114,6 +114,7 @@
   "images/psd_emd.png" 1751100134 47966 a2d7e5d14683e9d39d316628452e187b ""
   "images/psd_signal_removed.png" 1751271792 171056 acf12b20596f9233b53478f8b8fd6d69 ""
   "images/psdrmse_icaemdwave.png" 1751100134 11252 e247cb4698f6e2dd8fd8658272fd49e7 ""
+  "images/rmse_fp1.png" 1751289801 46846 cab88b8176f58d6a410086632633fb83 ""
   "images/signal_removed/5ch_emd_39.png" 1751279272 177858 ce9a8d9d69a735c6e3af8cfa4e686adf ""
   "images/signal_removed/5ch_ica_39.png" 1751279343 196714 0fe63c41a6a1429566364d01386e0271 ""
   "images/signal_removed/5ch_wavelet_39.png" 1751279307 105801 91702463c0a63e6699db1a5e0a244d8d ""

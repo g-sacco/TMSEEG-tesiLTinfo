@@ -1,4 +1,4 @@
-function plotAvgTEP(EEG)
+function plotAvgTEP(EEG, plotTitle)
     % 1. Average TEP per channel
     % Average across trials
     TEP = mean(EEG.data, 3);  % [channels x time]
@@ -7,9 +7,9 @@ function plotAvgTEP(EEG)
     t = linspace(EEG.xmin, EEG.xmax, EEG.pnts);  % in seconds
     
     % 3. Plot All Channels (Global Comparison)
-    figure;
+    figure("Name", plotTitle);
     plot(t, TEP');  % Transpose for time on x-axis
-    title('TEP (mean)');
+    title(['Average TEP Across Channels - ', char(plotTitle)]);
     xlabel('Time (s)'); ylabel('Amplitude (µV)');
-    ylim([-4 4]);
+    ylim([-10 10]);
 end

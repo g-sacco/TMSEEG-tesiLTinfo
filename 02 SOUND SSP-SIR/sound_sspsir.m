@@ -1,11 +1,11 @@
 %% step 0
 clear; close all; clc;
 
-filepath = 'C:\\Users\\Utente\OneDrive - Università degli Studi di Milano-Bicocca\\unimib\\Stage\\codice\\SOUND SSP-SIR\\';
+filepath = 'C:\Users\Utente\OneDrive - Università degli Studi di Milano-Bicocca\unimib\Stage\TMSEEG-tesiLTinfo\02 SOUND SSP-SIR\';
 fileprefix = 'alberto8_tdcs';
 
 % Open EEGLAB
-[ALLEEG EEG CURRENTSET ALLCOM] = eeglab;
+%[ALLEEG EEG CURRENTSET ALLCOM] = eeglab;
 
 %% Step 1: Import data to EEGLAB
 filename = [fileprefix, '.set'];
@@ -15,8 +15,6 @@ EEG = pop_loadset('filename', filename, 'filepath', filepath);
 EEG = pop_chanedit(EEG, 'lookup','C:\Users\Utente\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\eeglab2025.0.0\plugins\dipfit\standard_BESA\standard-10-5-cap385.elp');
 
 %% Step 3: Add TMS pulse events 
-%GATE = EEG.data(1, :);
-%stem(GATE);
 EEG = pop_chanevent(EEG, 1, ...
     'oper', 'X > 4', ... 
     'edge', 'leading', ...      % extract rising edges (typical for TMS triggers)
@@ -24,7 +22,7 @@ EEG = pop_chanevent(EEG, 1, ...
     'delevent', 'on', ...       % remove old events
     'nbtype', 1, ...            % treat all triggers as same event type
     'typename', 'TMS', ...      % name the event type
-    'delchan', 'on');          % do NOT delete the GATE channel
+    'delchan', 'on');           % delete the GATE channel
 
 %% Step 4: Epoch data (-1000 to 1000 ms)
 EEG = pop_epoch(EEG, {'TMS'}, [-1 1.00069], 'epochinfo', 'yes');
@@ -42,16 +40,15 @@ EEG.allchan = EEG.chanlocs;
 
 %% Step 6: Remove bad electrodes
 EEG = pop_rejchan(EEG, 'elec', [1:size(EEG.data,1)] , ...
-    'threshold',5, ...
+    'threshold',7.5, ...
     'norm','on',['' ...
     'measure'],'kurt');
 
-%% Step 7: Remove bad trials  
+%% Step 7: Remove bad trials (automatic)
 EEG = pop_jointprob(EEG,1,[1:size(EEG.data,1)] ,5,5,0,0);
-pop_rejmenu(EEG, 1);
-pause_script = input('Highlight bad trials, update marks and then press enter');
-EEG.BadTr = unique([find(EEG.reject.rejjp==1) find(EEG.reject.rejmanual==1)]);
+% Automatically identify bad trials based on joint probability
 EEG.BadTr = find(EEG.reject.rejjp == 1);
+fprintf('Automatically detected %d bad trials\n', length(EEG.BadTr));
 EEG = pop_rejepoch(EEG, EEG.BadTr, 0); 
 
 %% Save point
@@ -71,19 +68,17 @@ plotAvgTEP(EEG);
 EEG = pop_tesa_fastica( EEG, 'approach', 'symm', 'g', 'tanh', 'stabilization', 'off' );
 EEG = pop_tesa_compselect(EEG, ...
     'blink','on', ...
-    'blinkThresh',2.5, ...
-    'blinkElecs',{'Fp1','Fp2'}, ...        % Sostituisci se usi altri canali per EOG verticale
-    'blinkFeedback','on', ...
+    'blinkThresh', 2.5, ...
+    'blinkFeedback','off', ... 
     'move','on', ...
-    'moveThresh',2, ...
-    'moveElecs',{'F7','F8'}, ...           % Sostituisci se usi canali diversi per EOG orizzontale
-    'moveFeedback','on', ...
+    'moveThresh', 2, ...
+    'moveFeedback','off', ... 
     'tmsMuscle','off', ...
     'muscle','off', ...
     'muscleLegacy','off', ...
     'elecNoise','off', ...
     'remove','on', ...
-    'compCheck','on', ...
+    'compCheck','off', ... 
     'figSize','medium');
 
 plotAvgTEP(EEG);
@@ -92,24 +87,24 @@ plotAvgTEP(EEG);
 EEG = pop_tesa_sound(EEG, 'lambdaValue', 0.1, ...
                           'iter', 5); 
 
-%% Step 12: Baseline correction
+%% Step 11: Baseline correction
 EEG = pop_rmbase(EEG, [-1000 0]);
 plotAvgTEP(EEG);
 
-%% Step 13: SSP SIR for remaining muscle artifact
+%% Step 12: SSP SIR for remaining muscle artifact
 [EEG] = pop_tesa_sspsir(EEG, 'PC', {'data', [90]});
 plotAvgTEP(EEG);
 
-%% Step 14: Bandpass and bandstop filter
+%% Step 13: Bandpass and bandstop filter
 %EEG = pop_tesa_filtbutter( EEG, 1, 100, 4, 'bandpass' ); 
 %EEG = pop_tesa_filtbutter( EEG, 48, 52, 4, 'bandstop' );
 EEG = pop_tesa_filtbutter( EEG, 1, 48, 4, 'bandpass' ); 
 
-%% Step 15: Baseline correction
+%% Step 14: Baseline correction
 EEG = pop_rmbase(EEG, [-1000 0]);
 plotAvgTEP(EEG);
 
-%% Step 16: Downsample data
+%% Step 15: Downsample data
 EEG = pop_resample(EEG, 725);
 
 %% Save point

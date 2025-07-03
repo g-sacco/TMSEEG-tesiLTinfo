@@ -281,6 +281,11 @@ INPUT ./images/signal_removed/5ch_emd_39.png
 INPUT ./images/signal_removed/5ch_emd_39.png
 INPUT ./images/signal_removed/5ch_emd_39.png
 INPUT ./images/signal_removed/5ch_emd_39.png
+INPUT ./images/rmse_fp1.png
+INPUT ./images/rmse_fp1.png
+INPUT ./images/rmse_fp1.png
+INPUT ./images/rmse_fp1.png
+INPUT ./images/rmse_fp1.png
 INPUT TMS-EEG wavelet.aux
 INPUT ./TMS-EEG wavelet.out
 INPUT ./TMS-EEG wavelet.out

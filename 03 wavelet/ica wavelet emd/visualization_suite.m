@@ -76,8 +76,8 @@ function plot_overlaid_psd(psd_data, chan_name, config)
     
     % Plot all PSDs on the same axes using pre-calculated data
     semilogy(psd_data.f, psd_data.pxx_orig, 'k-', 'LineWidth', 1.5); hold on;
-    semilogy(psd_data.f, psd_data.pxx_wave, 'b-', 'LineWidth', 1.5);
-    semilogy(psd_data.f, psd_data.pxx_ica, 'r-', 'LineWidth', 1.5);
+    semilogy(psd_data.f, psd_data.pxx_wave, 'r-', 'LineWidth', 1.5);
+    semilogy(psd_data.f, psd_data.pxx_ica, 'b-', 'LineWidth', 1.5);
     semilogy(psd_data.f, psd_data.pxx_emd, 'g-', 'LineWidth', 1.5);
     
     xlim(config.plot.freq_limit);
@@ -176,24 +176,6 @@ end
 function plot_removed_signal_psd(diff_signals, psd_data, chan_name, config)
     %% Plot PSD of the removed signals using pre-calculated data
     
-    % Individual PSD plots of removed signals
-    figure('Name', 'PSD of Removed Signals - Individual', 'NumberTitle', 'off');
-    tiledlayout(3, 1);
-    
-    % Plot individual PSDs using tiledlayout for consistency
-    methods = {'wavelet', 'ica', 'emd'};
-    titles = {'Wavelet', 'ICA', 'EMD'};
-    
-    for i = 1:3
-        nexttile;
-        pwelch(diff_signals.(methods{i}).data(1, :), [], [], [], diff_signals.(methods{i}).srate);
-        xlim(config.plot.freq_limit);
-        title(sprintf("Channel %s - Signal removed by %s", chan_name, titles{i}));
-        ylabel('PSD (dB/Hz)');
-        grid on;
-    end
-    xlabel('Frequency (Hz)');
-    
     % Overlaid comparison of removed signals PSD using pre-calculated data
     figure('Name', 'PSD of Removed Signals - Comparison', 'NumberTitle', 'off');
     
@@ -209,19 +191,4 @@ function plot_removed_signal_psd(diff_signals, psd_data, chan_name, config)
     legend({'Wavelet Removed', 'ICA Removed', 'EMD Removed'}, 'Location', 'best');
     grid on;
     hold off;
-    
-    % Print statistics about the removed signals
-    fprintf('\nRemoved Signal Analysis:\n');
-    fprintf('RMS of signal removed by Wavelet: %.4f μV\n', rms(diff_signals.wavelet.data(1, :)));
-    fprintf('RMS of signal removed by ICA: %.4f μV\n', rms(diff_signals.ica.data(1, :)));
-    fprintf('RMS of signal removed by EMD: %.4f μV\n', rms(diff_signals.emd.data(1, :)));
-    
-    % Calculate dominant frequency of removed signals using pre-calculated data
-    [~, idx_wave] = max(psd_data.pxx_diff_wave);
-    [~, idx_ica] = max(psd_data.pxx_diff_ica);
-    [~, idx_emd] = max(psd_data.pxx_diff_emd);
-    
-    fprintf('Dominant frequency of Wavelet removed signal: %.2f Hz\n', psd_data.f(idx_wave));
-    fprintf('Dominant frequency of ICA removed signal: %.2f Hz\n', psd_data.f(idx_ica));
-    fprintf('Dominant frequency of EMD removed signal: %.2f Hz\n', psd_data.f(idx_emd));
 end
